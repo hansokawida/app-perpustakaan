@@ -61,6 +61,7 @@
         name="tahun_terbit"
         id="tahun_terbit"
         value="{{ old('tahun_terbit') }}"
+        placeholder="Contoh: 2026"
     >
 
     @error('tahun_terbit')

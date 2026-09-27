@@ -146,6 +146,40 @@
             margin: 0;
         }
 
+        .pagination {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .pagination nav {
+            background: transparent !important;
+            padding: 0 !important;
+            width: 100% !important;
+            display: block;
+        }
+
+        .pagination nav > div:first-child {
+            display: none !important;
+        }
+
+        .pagination nav > div:last-child {
+            display: flex !important;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .pagination nav a,
+        .pagination nav span {
+            text-decoration: none;
+        }
+
+        .pagination nav svg {
+            width: 20px;
+            height: 20px;
+        }
+
     </style>
 </head>
 

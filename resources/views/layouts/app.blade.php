@@ -74,6 +74,37 @@
             margin-bottom: 16px;
         }
 
+        /* Badge status */
+        .badge-success {
+            display: inline-block;
+            background: #d1fae5;
+            color: #065f46;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .badge-warning {
+            display: inline-block;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .badge-danger {
+            display: inline-block;
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
         .btn {
             display: inline-block;
             padding: 6px 14px;
@@ -123,15 +154,18 @@
             margin-top: 4px;
         }
 
+        /* Tombol aksi */
         .action-buttons {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
         .action-buttons form {
             margin: 0;
             padding: 0;
+            display: inline;
         }
 
         .action-buttons a {
@@ -144,6 +178,7 @@
             height: 28px;
             padding: 4px 8px;
             margin: 0;
+            white-space: nowrap;
         }
 
         .pagination {

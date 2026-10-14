@@ -5,6 +5,12 @@
 @section('content')
     <h1>Daftar Peminjaman</h1>
 
+    @if (session('success'))
+        <div class="alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <p>
         <a href="{{ route('loans.create') }}" class="btn">
             + Tambah Peminjaman
@@ -27,55 +33,62 @@
 
         <tbody>
             @forelse ($loans as $loan)
-
                 <tr>
-                    <td>{{ $loan['id'] }}</td>
-
-                    <td>{{ $loan['member']['nama'] }}</td>
-
-                    <td>{{ $loan['user']['name'] }}</td>
+                    <td>{{ $loan->id }}</td>
 
                     <td>
-                        @foreach ($loan['loanItems'] as $item)
-                            {{ $item['book']['judul'] }}@if (!$loop->last), @endif
-                        @endforeach
+                        {{ $loan->member->nama ?? '-' }}
                     </td>
 
-                    <td>{{ $loan['tanggal_pinjam'] }}</td>
-
-                    <td>{{ $loan['tanggal_kembali'] }}</td>
+                    <td>
+                        {{ $loan->user->name ?? '-' }}
+                    </td>
 
                     <td>
-                        @if ($loan['status'] === 'dikembalikan')
+                        @forelse ($loan->loanItems as $item)
+                            {{ $item->book->judul ?? 'Buku tidak ditemukan' }}@if (!$loop->last), @endif
+                        @empty
+                            -
+                        @endforelse
+                    </td>
+
+                    <td>{{ $loan->tanggal_pinjam }}</td>
+
+                    <td>{{ $loan->tanggal_kembali }}</td>
+
+                    <td>
+                        @if ($loan->status === 'dikembalikan')
                             <span class="badge-success">
                                 Dikembalikan
                             </span>
-                        @elseif ($loan['status'] === 'dipinjam')
+                        @elseif ($loan->status === 'dipinjam')
                             <span class="badge-warning">
                                 Dipinjam
                             </span>
-                        @elseif ($loan['status'] === 'terlambat')
+                        @elseif ($loan->status === 'terlambat')
                             <span class="badge-danger">
                                 Terlambat
                             </span>
+                        @else
+                            -
                         @endif
                     </td>
 
                     <td>
                         <div class="action-buttons">
-
-                            <a href="{{ route('loans.show', $loan['id']) }}">
+                            <a href="{{ route('loans.show', $loan->id) }}">
                                 Detail
                             </a>
 
-                            <a href="{{ route('loans.edit', $loan['id']) }}">
+                            <a href="{{ route('loans.edit', $loan->id) }}">
                                 Edit
                             </a>
 
-                            @if ($loan['status'] === 'dipinjam')
+                            @if ($loan->status === 'dipinjam')
                                 <form
-                                    action="{{ route('loans.kembalikan', $loan['id']) }}"
+                                    action="{{ route('loans.kembalikan', $loan->id) }}"
                                     method="POST"
+                                    onsubmit="return confirm('Yakin ingin mengembalikan buku ini?')"
                                 >
                                     @csrf
                                     @method('PUT')
@@ -87,8 +100,9 @@
                             @endif
 
                             <form
-                                action="{{ route('loans.destroy', $loan['id']) }}"
+                                action="{{ route('loans.destroy', $loan->id) }}"
                                 method="POST"
+                                onsubmit="return confirm('Yakin ingin menghapus transaksi peminjaman ini?')"
                             >
                                 @csrf
                                 @method('DELETE')
@@ -97,19 +111,15 @@
                                     Hapus
                                 </button>
                             </form>
-
                         </div>
                     </td>
                 </tr>
-
             @empty
-
                 <tr>
                     <td colspan="8">
                         Belum ada data peminjaman.
                     </td>
                 </tr>
-
             @endforelse
         </tbody>
     </table>

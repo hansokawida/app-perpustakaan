@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -46,6 +47,30 @@
             color: #fff;
             font-weight: bold;
             border-bottom: 2px solid #fff;
+        }
+
+        /* Informasi pengguna dan tombol logout */
+        nav .navbar-user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        nav .btn-logout {
+            background: none;
+            border: 1px solid #cbd5e1;
+            color: #cbd5e1;
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        nav .btn-logout:hover {
+            background: #1e40af;
+            color: #fff;
         }
 
         main {
@@ -119,6 +144,17 @@
         button[type="submit"] {
             display: block;
             margin-top: 10px;
+        }
+
+        /* Form logout tetap sejajar dengan navbar */
+        nav form.inline {
+            display: inline;
+            margin: 0;
+        }
+
+        nav form.inline button[type="submit"] {
+            display: inline-block;
+            margin-top: 0;
         }
 
         form.inline {
@@ -215,6 +251,200 @@
             height: 20px;
         }
 
+        /* Navbar yang lebih rapi */
+        nav:not(.pagination nav) {
+            gap: 20px;
+        }
+
+        nav .brand {
+            white-space: nowrap;
+        }
+
+        nav ul li a {
+            display: inline-block;
+            border-radius: 6px;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        nav ul li a:hover {
+            color: #fff;
+            background: #1e40af;
+        }
+
+        nav .navbar-user {
+            gap: 14px;
+        }
+
+        nav .user-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 3px;
+        }
+
+        nav .user-name {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        nav .user-role {
+            color: #cbd5e1;
+            font-size: 12px;
+        }
+
+        nav .btn-logout {
+            padding: 7px 12px;
+            border-radius: 6px;
+            transition: background 0.2s ease;
+        }
+
+        /* Halaman profil */
+        .profile-page {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .profile-heading {
+            margin-bottom: 24px;
+        }
+
+        .profile-heading h1 {
+            margin-bottom: 8px;
+            color: #1e3a8a;
+        }
+
+        .profile-heading p {
+            color: #6b7280;
+            margin-top: 0;
+        }
+
+        .profile-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .profile-card h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 19px;
+            color: #1e3a8a;
+        }
+
+        .profile-detail {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 14px;
+            padding: 13px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .profile-detail:last-child {
+            border-bottom: none;
+        }
+
+        .profile-label {
+            color: #6b7280;
+        }
+
+        .profile-value {
+            color: #1f2937;
+            font-weight: 600;
+            overflow-wrap: anywhere;
+        }
+
+        .profile-role {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 999px;
+            background: #dbeafe;
+            color: #1d4ed8;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .profile-card form label {
+            margin-top: 16px;
+        }
+
+        .profile-card form input {
+            padding: 10px 12px;
+            margin-top: 7px;
+            border: 1px solid #d1d5db;
+            border-radius: 7px;
+            font-size: 14px;
+        }
+
+        .profile-card form input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+        }
+
+        .profile-submit {
+            display: inline-block;
+            margin-top: 22px;
+            padding: 11px 18px;
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            border-radius: 7px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .profile-submit:hover {
+            background: #1d4ed8;
+        }
+
+        .alert-error {
+            background: #fee2e2;
+            color: #991b1b;
+            border-radius: 7px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 1000px) {
+            nav {
+                justify-content: center;
+                padding: 16px 20px;
+            }
+
+            nav .brand {
+                width: 100%;
+                text-align: center;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+            }
+
+            nav .navbar-user {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 600px) {
+            main {
+                padding: 24px 16px;
+            }
+
+            .profile-card {
+                padding: 18px;
+            }
+
+            .profile-detail {
+                grid-template-columns: 1fr;
+                gap: 5px;
+            }
+        }
     </style>
 </head>
 
@@ -223,11 +453,9 @@
     @include('partials.navbar')
 
     <main>
-
         @include('partials.alert')
 
         @yield('content')
-
     </main>
 
     <footer>
